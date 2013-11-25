@@ -20,9 +20,11 @@ def home():
 def new_entry():
 	username=request.params["Username"]
 	username=username.replace("\t"," ")
+	username=username.replace("\n"," ")
 
 	entry=request.params["Entry"]
 	entry=entry.replace("\t"," ")
+	entry=entry.replace("\n"," ")
 
 	timestamp = datetime.now()
 
