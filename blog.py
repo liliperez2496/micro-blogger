@@ -26,6 +26,10 @@ def new_entry():
 	entry=entry.replace("\t"," ")
 	entry=entry.replace("\n"," ")
 
+	if len(entry) >= 140 or len(entry) == 0:
+		redirect('/')
+
+
 	timestamp = datetime.now()
 
 	f = open("entries", "a")
