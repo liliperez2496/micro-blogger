@@ -19,8 +19,10 @@ def home():
 @route('/new_entry', method="POST")
 def new_entry():
 	username=request.params["Username"]
-	
+	username=username.replace("\t"," ")
+
 	entry=request.params["Entry"]
+	entry=entry.replace("\t"," ")
 
 	timestamp = datetime.now()
 
