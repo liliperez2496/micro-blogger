@@ -1,0 +1,43 @@
+<html>
+   <head>
+	<title>Microblogging</title>
+	<style>
+		.entry{
+			border-style: solid;
+			border-width: 1px;
+			margin: 36px;
+		}
+		.name{
+			color: blueviolet;
+
+		}
+		.message{
+			font-family: fantasy;
+		}
+		.time{
+			float: right;
+		}
+	</style>
+   </head>
+	<body>
+		<h1>Welcome to my microblogging service</h1>
+		<form action="/new_entry" method="post">
+			Username <input type="text" name="Username">
+			<br/>
+			Entry <textarea rows=4 name="Entry"></textarea>
+			<input type="submit">
+		</form>
+		<div> 
+			% for item in entries:
+				<div class="entry"> 
+					<span class="name">{{item["user"]}}</span>: 
+					<span class="message">{{item["message"]}}</span> 
+					<span class="time">{{item["timestamp"]}}</span>
+				</div>
+				
+			% end
+			
+
+		</div>
+	</body>
+</html>
