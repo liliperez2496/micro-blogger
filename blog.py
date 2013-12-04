@@ -44,6 +44,26 @@ def write_entry(username, entry, timestamp):
 	f.write(username + "\t" + entry + "\t" + str(timestamp) + "\n")
 	f.close()
 
+@route('/log_in', method='POST')
+@view('login.html')
+def log_in():
+	entered_user=request.params["Username"]
+
+	entered_pw=request.params["Password"]
+
+	a = open("info")
+	infos = []
+	
+	# for line in a
+	#	infos = { "username": username, "password": password }
+
+
+@route('/log_in')
+@view('login.html')
+def loginpage():
+	pass
+
+
 
 
 run(host='0.0.0.0', port=8080, debug=True, reloader = True)
