@@ -83,6 +83,27 @@ def signuppage():
 	pass
 
 
+@route('/sign_up', method="POST")
+@view('signup.html')
+def signup():
+	 user = request.params("username")
+	 pass1 = request.params("password1")
+	 pass2 = request.params("password2")
+
+
+
+def is_username_taken(username):
+	 	b = open("info")
+
+	 	for line in b:
+	 		parts = line.split('\t')
+	 		username, password = parts
+	 		if user == username
+	 			return True
+	 		
+	 	return False
+
+
 
 run(host='0.0.0.0', port=8080, debug=True, reloader = True)
 
