@@ -52,10 +52,16 @@ def log_in():
 	entered_pw=request.params["Password"]
 
 	a = open("info")
-	infos = []
 	
-	# for line in a
-	#	infos = { "username": username, "password": password }
+	for line in a:
+		parts = line.split("/t")
+		username, password = parts
+	
+		if entered_user == username and entered_pw == password:
+			response.set_cookie("Username", username)
+			redirect('/')
+
+
 
 
 @route('/log_in')
