@@ -86,19 +86,34 @@ def signuppage():
 @route('/sign_up', method="POST")
 @view('signup.html')
 def signup():
-	 user = request.params("username")
-	 pass1 = request.params("password1")
-	 pass2 = request.params("password2")
+	 user = request.params["username"]
+	 pass1 = request.params["password1"]
+	 pass2 = request.params["password2"]
+	 if is_username_taken(user):
+	 	return
+
+	 if pass1 != pass2:
+	 	return
+	 write_user(user, pass1)
+	 response.set_cookie("Username", user)
+	 redirect('/')
 
 
 
-def is_username_taken(username):
+
+def write_user(user, password):
+	c = open('info', 'a')
+	c.write(user + '\t' + password + '\n')
+	c.close
+
+
+def is_username_taken(user):
 	 	b = open("info")
 
 	 	for line in b:
 	 		parts = line.split('\t')
 	 		username, password = parts
-	 		if user == username
+	 		if user == username:
 	 			return True
 	 		
 	 	return False
