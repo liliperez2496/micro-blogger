@@ -20,9 +20,11 @@
 	</style>
    </head>
 	<body>
+		% if username: 
 		<h1>Welcome to my microblogging service</h1>
+		<a href="/log_out">Log out</a>
 		<form action="/new_entry" method="post">
-			Username <input type="text" name="Username">
+			Username <input type="text" name="Username" value="{{username}}" readonly>
 			<br/>
 			Entry <textarea rows=4 name="Entry"></textarea>
 			<input type="submit">
@@ -36,7 +38,10 @@
 				</div>
 				
 			% end
-			
+		% else:
+			<a href="/log_in">Log in</a>
+
+		% end
 
 		</div>
 	</body>

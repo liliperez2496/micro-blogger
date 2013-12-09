@@ -5,6 +5,7 @@ from datetime import datetime
 @route('/')
 @view('home.html')
 def home():
+	username = request.get_cookie('Username')
 	archive = open("entries")
 	entries = []
 
@@ -18,7 +19,7 @@ def home():
 	archive.close()
 	entries.reverse()
 
-	return {"entries":entries}
+	return {"entries":entries, 'username':username}
 
 @route('/new_entry', method="POST")
 def new_entry():
@@ -54,7 +55,7 @@ def log_in():
 	a = open("info")
 	
 	for line in a:
-		parts = line.split("/t")
+		parts = line.split("\t")
 		username, password = parts
 	
 		if entered_user == username and entered_pw == password:
@@ -68,6 +69,12 @@ def log_in():
 @view('login.html')
 def loginpage():
 	pass
+
+
+@route('/log_out')
+def logoutpage():
+	response.set_cookie("Username", "")
+	redirect("/")
 
 
 
