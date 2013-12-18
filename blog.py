@@ -90,10 +90,10 @@ def signup():
 	 pass1 = request.params["password1"]
 	 pass2 = request.params["password2"]
 	 if is_username_taken(user):
-	 	return
+	 	return dict(error="Username taken")
 
 	 if pass1 != pass2:
-	 	return
+	 	return dict(error="Passwords don't match")
 	 write_user(user, pass1)
 	 response.set_cookie("Username", user)
 	 redirect('/')
